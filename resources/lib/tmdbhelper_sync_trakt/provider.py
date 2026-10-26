@@ -18,8 +18,6 @@ class Provider(SyncProvider):
         'SyncWatchlist': synctype.SyncWatchlist,
         'SyncCollection': synctype.SyncCollection,
         'SyncHiddenDropped': synctype.SyncHiddenDropped,
-        'SyncRatings': synctype.SyncRatings,
-        'SyncFavorites': synctype.SyncFavorites,
         'SyncHiddenCalendar': synctype.SyncHiddenCalendar,
         'SyncHiddenProgressWatched': synctype.SyncHiddenProgressWatched,
         'SyncHiddenProgressCollected': synctype.SyncHiddenProgressCollected,
@@ -31,7 +29,6 @@ class Provider(SyncProvider):
         'watchlist': basic.ItemWatchlist,
         'collection': basic.ItemCollection,
         'dropped': basic.ItemDropped,
-        'favorites': basic.ItemFavorites,
         'progress': ItemProgress,
     }
     getter_classes = {

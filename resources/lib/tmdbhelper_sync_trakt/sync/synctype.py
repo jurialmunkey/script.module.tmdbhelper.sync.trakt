@@ -53,20 +53,6 @@ class SyncPlayback(TraktDataTypeShowsToEpisodes):
     key_prefix = 'playback'
 
 
-class SyncRatings(TraktDataType):
-    keys = ('rating', 'rated_at', )
-    last_activities_key = 'rated_at'
-    method = 'ratings'
-
-
-class SyncFavorites(TraktDataType):
-    keys = ('rank', 'listed_at', 'notes', )
-    last_activities_key = 'favorited_at'
-    sync_kwgs = {'extended': 'full'}
-    method = 'favorites'
-    key_prefix = 'favorites'
-
-
 class SyncWatchlist(TraktDataType):
     keys = ('rank', 'listed_at', 'notes', )
     last_activities_key = 'watchlisted_at'

@@ -24,13 +24,6 @@ class ItemCollection(ItemSync, BasicItemCollection):
     sync_url = 'collection'
 
 
-class ItemFavorites(ItemSync):
-    localized_name_add = 32490
-    localized_name_rem = 32491
-    sync_key = 'favorites_listed_at'
-    sync_url = 'favorites'
-
-
 class ItemDropped(ItemSync, BasicItemDropped):
     sync_url = 'hidden/dropped'
 

@@ -104,26 +104,6 @@ class TraktSyncItemData(SyncItemData):
         return self.item.get('reset_at')
 
     """
-    rating
-    """
-    @cached_property
-    def rating(self):
-        return self.get_rating()
-
-    def get_rating(self):
-        return self.item.get('rating')
-
-    """
-    rated_at
-    """
-    @cached_property
-    def rated_at(self):
-        return self.get_rated_at()
-
-    def get_rated_at(self):
-        return self.item.get('rated_at')
-
-    """
     rank
     """
     @cached_property
