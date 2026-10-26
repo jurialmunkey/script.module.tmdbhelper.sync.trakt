@@ -1,4 +1,4 @@
-from .item import ItemSync
+from tmdbhelper_sync_trakt.actions.item import ItemSync
 from tmdbhelper.lib.script.sync.progress import ItemProgress as BasicItemProgress
 from tmdbhelper.lib.addon.dialog import busy_decorator
 

@@ -1,6 +1,6 @@
 from tmdbhelper.lib.addon.consts import HALFDAY_EXPIRY
 from tmdbhelper.lib.sync.datatype import timerlock
-from .datatype import TraktDataType, TraktDataTypeEpisodesInShows, TraktDataTypeShowsToEpisodes
+from tmdbhelper_sync_trakt.sync.datatype import TraktDataType, TraktDataTypeEpisodesInShows, TraktDataTypeShowsToEpisodes
 
 
 class SyncHiddenProgressWatched(TraktDataType):
@@ -92,7 +92,7 @@ class SyncAllNextEpisodes(TraktDataTypeEpisodesInShows):
     def sync_func(self):
         """ Get next episodes on Trakt """
         from tmdbhelper.lib.addon.logger import TimerFunc
-        from .nextmeta import TraktSyncAllNextEpisodesMeta
+        from tmdbhelper_sync_trakt.sync.nextmeta import TraktSyncAllNextEpisodesMeta
         with TimerFunc(
             f'Sync: {self.__class__.__name__} get_meta {self.method} {self.item_type}',
             inline=True,
@@ -111,7 +111,7 @@ class SyncNextEpisodes(SyncAllNextEpisodes):
     def sync_func(self):
         """ Get next episodes on Trakt """
         from tmdbhelper.lib.addon.logger import TimerFunc
-        from .nextmeta import TraktSyncNextEpisodesMeta
+        from tmdbhelper_sync_trakt.sync.nextmeta import TraktSyncNextEpisodesMeta
         with TimerFunc(
             f'Sync: {self.__class__.__name__} get_meta {self.method} {self.item_type}',
             inline=True,

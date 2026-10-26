@@ -14,7 +14,7 @@ class TraktDataType(DataType):
         return ('sync', self.method, f'{self.item_type}s',)
 
     def get_syncitem(self, meta):
-        from .itemdata import TraktSyncItem
+        from tmdbhelper_sync_trakt.sync.itemdata import TraktSyncItem
         return TraktSyncItem(self.item_type, meta, self.keys, key_prefix=self.key_prefix)
 
     def get_response_sync_data(self, *args, **kwargs):

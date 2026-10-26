@@ -11,6 +11,19 @@ from tmdbhelper.lib.sync.nextmeta import (
 
 class TraktSyncNextEpisodeItem(SyncNextEpisodeItem):
 
+    @cached_property
+    def trakt_slug(self):
+        return self.get_trakt_slug()
+
+    def get_trakt_slug(self):
+        return self.get_key('trakt_slug')
+
+    def get_id_data(self):
+        id_data = super().get_id_data()
+        if self.trakt_slug:
+            id_data['slug'] = self.trakt_slug
+        return id_data
+
     def is_next_episode(self, season, episode):
         if not episode.get('completed'):
             return True
@@ -31,6 +44,7 @@ class TraktSyncNextEpisodeItem(SyncNextEpisodeItem):
 
 
 class TraktSyncAllNextEpisodesMetaItem(SyncAllNextEpisodesMetaItem):
+    dialog_progress_bg_text_fstr = '{sync.tmdb_id} {sync.trakt_slug}'
     sync_item_class = TraktSyncNextEpisodeItem
 
 
