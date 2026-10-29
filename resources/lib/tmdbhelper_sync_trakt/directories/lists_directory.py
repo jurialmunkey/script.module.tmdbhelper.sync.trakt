@@ -97,7 +97,7 @@ class ListTraktDirectory(ListDefault):
 
     def get_items(self, group=None, tmdb_type=None, **kwargs):
         self.list_properties.group = group
-        self.list_properties.tmdb_type = tmdb_type if tmdb_type != 'both' else None
+        self.list_properties.tmdb_type = tmdb_type if tmdb_type not in ('both', 'None') else None
         return self.get_items_finalised()
 
 

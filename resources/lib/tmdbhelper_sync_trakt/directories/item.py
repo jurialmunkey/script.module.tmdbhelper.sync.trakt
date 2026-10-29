@@ -27,4 +27,4 @@ class TraktDirectoryItem(TraktDirItem):
     priority = 180
     label = 'Trakt'
     params = {'info': 'trakt_directory'}
-    types = (None,)
+    types = ('both',)
