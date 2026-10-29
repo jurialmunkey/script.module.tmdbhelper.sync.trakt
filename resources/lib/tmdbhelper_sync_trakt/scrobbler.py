@@ -12,10 +12,14 @@ class ProviderScrobbler(ScrobbleRequest):
 
     def send_request(self, method, payload):
         api = self.provider.api
-        return api.get_api_request(api.get_request_url('scrobble', method),
-                                   postdata=payload, headers=api.headers, method='json')
+        return api.get_simple_api_request(
+            api.get_request_url('scrobble', method),
+            postdata=payload, headers=api.headers, method='json')
 
     def get_result(self, method, response):
+        if method == 'stop' and response.status_code == 409:
+            # Trakt already recorded this item; retrying would duplicate the scrobble.
+            return ScrobbleResult(True, False)
         successful = response.status_code in (200, 201, 204)
         if not successful or method != 'stop' or response.status_code == 204:
             return ScrobbleResult(successful, False)
