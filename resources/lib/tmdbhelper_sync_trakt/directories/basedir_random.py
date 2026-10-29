@@ -10,6 +10,7 @@ class BaseDirItemRandomTrending(BaseDirItem):
     params = {'info': 'trakt_random_trending'}
     types = ('movie', 'tv', 'both', )
     art_icon = 'resources/icons/trakt/trend.png'
+    group = 32204
 
     @cached_property
     def label(self):
@@ -24,6 +25,7 @@ class BaseDirItemRandomPopular(BaseDirItemRandomTrending):
     label_prefix = 32175
     params = {'info': 'trakt_random_popular'}
     art_icon = 'resources/icons/trakt/popular.png'
+    group = 32175
 
 
 class BaseDirItemRandomMostPlayed(BaseDirItemRandomTrending):
@@ -31,6 +33,7 @@ class BaseDirItemRandomMostPlayed(BaseDirItemRandomTrending):
     label_prefix = 32205
     params = {'info': 'trakt_random_mostplayed'}
     art_icon = 'resources/icons/trakt/mostplayed.png'
+    group = 32414
 
 
 class BaseDirItemRandomMostViewers(BaseDirItemRandomTrending):
@@ -38,6 +41,7 @@ class BaseDirItemRandomMostViewers(BaseDirItemRandomTrending):
     label_prefix = 32414
     params = {'info': 'trakt_random_mostviewers'}
     art_icon = 'resources/icons/trakt/viewers.png'
+    group = 32414
 
 
 class BaseDirItemRandomAnticipated(BaseDirItemRandomTrending):
@@ -45,6 +49,7 @@ class BaseDirItemRandomAnticipated(BaseDirItemRandomTrending):
     label_prefix = 32206
     params = {'info': 'trakt_random_anticipated'}
     art_icon = 'resources/icons/trakt/anticipated.png'
+    group = 32206
 
 
 class BaseDirItemRandomTrendingLists(BaseDirItemRandomTrending):
@@ -53,6 +58,7 @@ class BaseDirItemRandomTrendingLists(BaseDirItemRandomTrending):
     params = {'info': 'trakt_random_trendinglists'}
     art_icon = 'resources/icons/trakt/trendinglist.png'
     types = ('both', )
+    group = 32159
 
 
 class BaseDirItemRandomPopularLists(BaseDirItemRandomTrending):
@@ -61,6 +67,7 @@ class BaseDirItemRandomPopularLists(BaseDirItemRandomTrending):
     params = {'info': 'trakt_random_popularlists'}
     art_icon = 'resources/icons/trakt/popularlist.png'
     types = ('both', )
+    group = 32159
 
 
 class BaseDirItemRandomLikedLists(BaseDirItemRandomTrending):
@@ -69,6 +76,7 @@ class BaseDirItemRandomLikedLists(BaseDirItemRandomTrending):
     params = {'info': 'trakt_random_likedlists'}
     art_icon = 'resources/icons/trakt/likedlist.png'
     types = ('both', )
+    group = 32159
 
 
 class BaseDirItemRandomMyLists(BaseDirItemRandomTrending):
@@ -77,6 +85,7 @@ class BaseDirItemRandomMyLists(BaseDirItemRandomTrending):
     params = {'info': 'trakt_random_mylists'}
     art_icon = 'resources/icons/trakt/mylists.png'
     types = ('both', )
+    group = 32159
 
 
 def get_all_random_class_instances():

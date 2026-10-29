@@ -28,7 +28,7 @@ class TraktDirectoryProperties(ListProperties):
     tmdb_type = None
 
     def get_menu_items(self):
-        return get_all_trakt_class_instances()
+        return get_all_trakt_class_instances() + get_all_random_class_instances()
 
     @cached_property
     def entries(self):
