@@ -13,7 +13,8 @@ class TraktDirectoryItemMapper(ItemMapper):
 
     def get_builder(self):
         entry = self.meta['entry']
-        return entry.item.item_builder(entry.item, entry.type, mixed_dir=True, type_art=self.type_art)
+        return entry.item.item_builder(
+            entry.item, entry.type, mixed_dir=True, type_art=self.type_art and not self.is_group)
 
     @property
     def is_group(self):
