@@ -10,6 +10,7 @@ from tmdbhelper_sync_trakt.actions.favorites import ItemFavorites
 from tmdbhelper_sync_trakt.directories.item import TraktDirectoryItem
 from tmdbhelper_sync_trakt.directories.routes import LIST_ROUTES
 from tmdbhelper_sync_trakt.monitor_lists import TraktMonitorLists
+from tmdbhelper_sync_trakt.stats import TraktStatsSupplier
 from tmdbhelper_sync_trakt.ratings import (
     TraktRatingsSupplier, TraktSeasonRatingsSupplier, TraktEpisodeRatingsSupplier,
 )
@@ -63,6 +64,7 @@ class Provider(SyncProvider):
     }
     list_routes = LIST_ROUTES
     monitor_lists_class = TraktMonitorLists
+    stats_class = TraktStatsSupplier
     scrobbler_class = ProviderScrobbler
 
     @cached_property
