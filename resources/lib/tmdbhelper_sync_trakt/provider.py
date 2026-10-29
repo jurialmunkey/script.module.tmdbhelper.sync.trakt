@@ -13,6 +13,9 @@ from tmdbhelper_sync_trakt.monitor_lists import TraktMonitorLists
 from tmdbhelper_sync_trakt.ratings import (
     TraktRatingsSupplier, TraktSeasonRatingsSupplier, TraktEpisodeRatingsSupplier,
 )
+from tmdbhelper_sync_trakt.imdb_top250 import (
+    TraktIMDbTop250MoviesSupplier, TraktIMDbTop250TVShowsSupplier,
+)
 
 
 class Provider(SyncProvider):
@@ -54,6 +57,10 @@ class Provider(SyncProvider):
         'episode': TraktEpisodeRatingsSupplier,
     }
     directory_item_class = TraktDirectoryItem
+    imdb_top250_classes = {
+        'movie': TraktIMDbTop250MoviesSupplier,
+        'tvshow': TraktIMDbTop250TVShowsSupplier,
+    }
     list_routes = LIST_ROUTES
     monitor_lists_class = TraktMonitorLists
     scrobbler_class = ProviderScrobbler
