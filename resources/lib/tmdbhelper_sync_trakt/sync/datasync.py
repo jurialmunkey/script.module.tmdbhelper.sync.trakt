@@ -39,7 +39,7 @@ class TraktSyncDataGetterAllUnHiddenShowsInProgress:
         return self.get_calendar_data()
 
     def get_calendar_data(self):
-        from tmdbhelper.lib.items.directories.trakt.lists_calendar import ListTraktCalendarProperties
+        from tmdbhelper_sync_trakt.directories.lists_calendar import ListTraktCalendarProperties
         list_properties = ListTraktCalendarProperties()
         list_properties.trakt_api = self.provider.api
         list_properties.trakt_date = self.calendar_startdate
