@@ -4,6 +4,8 @@ from tmdbhelper.lib.addon.dialog import busy_decorator
 
 
 class ItemProgress(ItemSync, BasicItemProgress):
+    sync_types = ('SyncPlayback',)
+
     @busy_decorator
     def get_sync_response(self):
         """ Called after user selects choice """
