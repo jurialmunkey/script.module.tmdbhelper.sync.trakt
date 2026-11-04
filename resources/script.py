@@ -7,6 +7,11 @@ def run(action=None, payload=None, **parameters):
             'RunScript(plugin.video.themoviedb.helper,configure_sync_provider,'
             'addon_id=script.module.tmdbhelper.sync.trakt)')
         return
+    import sys
+    from os.path import join
+    from xbmcaddon import Addon
+
+    sys.path.insert(0, join(Addon('plugin.video.themoviedb.helper').getAddonInfo('path'), 'resources'))
     from tmdbhelper.lib.sync.providers.registry import SyncProviderRegistry
     provider = SyncProviderRegistry().find_provider('trakt')
     if provider is None:
