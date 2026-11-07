@@ -498,7 +498,7 @@ class BaseDirItemTraktSearchLists(BaseDirItem):
     group = 32159
 
 
-class BaseDirItemTraktAuthenticate(BaseDirItem):
+class BaseDirItemTraktAuthenticate(BaseDirItemTraktAuthorised):
     priority = 660
     label_type = 'localize'
     label_localized = 32010
@@ -509,8 +509,7 @@ class BaseDirItemTraktAuthenticate(BaseDirItem):
 
     @property
     def enabled(self):
-        from jurialmunkey.window import get_property
-        return not bool(get_property('TraktIsAuth'))
+        return not self.authorisation.is_authorized
 
 
 class BaseDirItemTraktRandom(BaseDirItem):
