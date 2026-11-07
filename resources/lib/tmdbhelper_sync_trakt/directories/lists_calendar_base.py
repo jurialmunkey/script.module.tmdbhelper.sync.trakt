@@ -17,6 +17,7 @@ class CachedResponse:
         self.url = url
 
     cache_days = 0.25
+    is_stale_allowed = False
 
     @cached_property
     def cache_name(self):
