@@ -13,7 +13,6 @@ from tmdbhelper_sync_trakt.actions.lists import TraktListActions
 from tmdbhelper_sync_trakt.directories.item import TraktDirectoryItem
 from tmdbhelper_sync_trakt.directories.routes import LIST_ROUTES
 from tmdbhelper_sync_trakt.monitor_lists import TraktMonitorLists
-from tmdbhelper_sync_trakt.stats import TraktStatsSupplier
 from tmdbhelper_sync_trakt.settings import TraktSettings
 from tmdbhelper_sync_trakt.identifiers.client import TraktIdentifierClient, TraktIdentifierResolver
 from tmdbhelper_sync_trakt.ratings import (
@@ -75,7 +74,6 @@ class Provider(SyncProvider):
     list_routes = LIST_ROUTES
     monitor_lists_class = TraktMonitorLists
     list_actions_class = TraktListActions
-    stats_class = TraktStatsSupplier
     identifier_resolver_class = TraktIdentifierResolver
     scrobbler_class = ProviderScrobbler
 
