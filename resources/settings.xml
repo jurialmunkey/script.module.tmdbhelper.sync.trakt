@@ -55,6 +55,11 @@
         </category>
         <category id="progress" label="32005">
             <group id="1">
+                <setting id="use_airtime" type="boolean" label="32016" help="32017">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
                 <setting id="use_calendar" type="boolean" label="32006" help="32007">
                     <level>0</level>
                     <default>false</default>

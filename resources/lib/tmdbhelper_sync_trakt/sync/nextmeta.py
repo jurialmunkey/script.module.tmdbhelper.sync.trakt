@@ -1,5 +1,6 @@
 from jurialmunkey.ftools import cached_property
 from tmdbhelper.lib.addon.tmdate import convert_timestamp
+from tmdbhelper_sync_trakt.sync.airing import TraktEpisodeAiring
 from tmdbhelper.lib.sync.nextmeta import (
     SyncNextEpisodeItem,
     SyncAllNextEpisodesMetaItem,
@@ -10,6 +11,15 @@ from tmdbhelper.lib.sync.nextmeta import (
 
 
 class TraktSyncNextEpisodeItem(SyncNextEpisodeItem):
+
+    @cached_property
+    def next_episode_is_unaired(self):
+        return self.get_next_episode_is_unaired()
+
+    def get_next_episode_is_unaired(self):
+        if not self.main.use_airtime:
+            return super().next_episode_is_unaired
+        return TraktEpisodeAiring(self.next_episode_aired_at).is_unaired
 
     @cached_property
     def trakt_slug(self):

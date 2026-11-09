@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from jurialmunkey.ftools import cached_property
+from tmdbhelper_sync_trakt.sync.airing import TraktEpisodeAiring
 from tmdbhelper.lib.sync.datasync import (
     SyncDataGetter,
     SyncDataGetterAllMoviesToWatch,
@@ -22,6 +23,14 @@ class TraktSyncDataGetterAllUnHiddenShowsInProgress(SyncDataGetter):
     calendar_startdate = -14
     calendar_days = 15
 
+    @cached_property
+    def use_airtime(self):
+        return self.provider.settings.use_airtime
+
+    @cached_property
+    def use_calendar(self):
+        return self.provider.settings.use_calendar or self.use_airtime
+
     @property
     def get_episode_watchedcount(self):
         return self.instance_syncdata.get_episode_watchedcount
@@ -42,8 +51,7 @@ class TraktSyncDataGetterAllUnHiddenShowsInProgress(SyncDataGetter):
         return self.get_calendar_episodes()
 
     def get_calendar_episodes(self):
-        from tmdbhelper.lib.addon.tmdate import date_in_range
-        if not self.provider.settings.use_calendar:
+        if not self.use_calendar:
             return
 
         if not self.calendar_data:
@@ -53,12 +61,7 @@ class TraktSyncDataGetterAllUnHiddenShowsInProgress(SyncDataGetter):
 
         for i in self.calendar_data:
             try:
-                # Check that date is still in range once utc_converted
-                if not date_in_range(
-                    i['first_aired'],
-                    utc_convert=True,
-                    start_date=self.calendar_startdate,
-                    days=self.calendar_days):
+                if not self.is_calendar_episode_available(i):
                     continue
 
                 # Ignore specials
@@ -72,6 +75,18 @@ class TraktSyncDataGetterAllUnHiddenShowsInProgress(SyncDataGetter):
                 continue
 
         return calendar
+
+    def is_calendar_episode_available(self, item):
+        if self.use_airtime:
+            airing = TraktEpisodeAiring(item['first_aired'])
+            return not airing.is_unaired and airing.is_in_range(self.calendar_startdate, self.calendar_days)
+        from tmdbhelper.lib.addon.tmdate import date_in_range
+        return date_in_range(
+            item['first_aired'],
+            utc_convert=True,
+            start_date=self.calendar_startdate,
+            days=self.calendar_days,
+        )
 
     def is_calendar_watched(self, tmdb_id):
         if not self.calendar_episodes:
@@ -115,7 +130,7 @@ class TraktSyncDataGetterAllUnHiddenShowsInProgress(SyncDataGetter):
         return self.get_calendar_sync_succeeded()
 
     def get_calendar_sync_succeeded(self):
-        if not self.provider.settings.use_calendar:
+        if not self.use_calendar:
             return True
         if not any(item['aired_episodes'] <= item['watched_episodes'] for item in self.parent_getter.items):
             return True

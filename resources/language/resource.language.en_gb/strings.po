@@ -69,6 +69,14 @@ msgctxt "#32015"
 msgid "Legacy credentials migrated"
 msgstr ""
 
+msgctxt "#32016"
+msgid "Use episode air times"
+msgstr ""
+
+msgctxt "#32017"
+msgid "Use Trakt's broadcast date and time to determine when next episodes have aired. Also checks the calendar for newly aired episodes and refreshes next-episode calculations every ten minutes. Uses the existing date rules when no air time is available."
+msgstr ""
+
 msgctxt "#32100"
 msgid "Unauthorised 401 Error"
 msgstr ""

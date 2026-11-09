@@ -30,6 +30,10 @@ class TraktSettings:
     def use_calendar(self):
         return self.addon.getSettingBool('use_calendar')
 
+    @property
+    def use_airtime(self):
+        return self.addon.getSettingBool('use_airtime')
+
     def get_configured_settings(self):
         path = join(translatePath(self.addon.getAddonInfo('profile')), 'settings.xml')
         if not exists(path):

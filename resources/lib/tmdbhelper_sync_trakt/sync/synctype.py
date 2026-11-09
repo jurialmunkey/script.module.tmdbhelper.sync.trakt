@@ -1,4 +1,6 @@
+from jurialmunkey.ftools import cached_property
 from tmdbhelper.lib.addon.consts import HALFDAY_EXPIRY
+from tmdbhelper.lib.addon.tmdate import set_timestamp
 from tmdbhelper.lib.sync.datatype import timerlock
 from tmdbhelper_sync_trakt.sync.datatype import TraktDataType, TraktDataTypeEpisodesInShows, TraktDataTypeShowsToEpisodes
 
@@ -72,7 +74,40 @@ class SyncAllNextEpisodes(TraktDataTypeEpisodesInShows):
     keys = ('upnext_episode_id', )
     last_activities_key = 'watched_at'
     method = 'all_next_episodes'
-    expiry_time = HALFDAY_EXPIRY
+
+    @cached_property
+    def use_airtime(self):
+        return self.provider.settings.use_airtime
+
+    @property
+    def expiry_time(self):
+        return 600 if self.use_airtime else HALFDAY_EXPIRY
+
+    @cached_property
+    def airing_configuration(self):
+        return f'{int(self.use_airtime)}.{int(self.provider.settings.use_calendar)}'
+
+    @property
+    def airing_activity_method(self):
+        return f'{self.cache_method}.airing'
+
+    @cached_property
+    def is_expired(self):
+        return self.get_is_expired()
+
+    def get_is_expired(self):
+        # The shared columns contain one calculation, not a separate result per policy.
+        configuration = self.cache.get_activity(self.item_type, self.airing_activity_method)
+        return configuration != self.airing_configuration or super().is_expired
+
+    def store_last_activity(self):
+        super().store_last_activity()
+        self.cache.set_activity(
+            self.item_type,
+            self.airing_activity_method,
+            self.airing_configuration,
+            set_timestamp(self.expiry_time, set_int=True),
+        )
 
     @timerlock
     def sync_func(self):
@@ -91,7 +126,6 @@ class SyncNextEpisodes(SyncAllNextEpisodes):
     keys = ('next_episode_id', 'next_episode_aired_at')
     last_activities_key = 'watched_at'
     method = 'nextup'
-    expiry_time = HALFDAY_EXPIRY
 
     @timerlock
     def sync_func(self):
