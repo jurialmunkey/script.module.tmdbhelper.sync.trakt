@@ -7,7 +7,8 @@ from xbmcgui import Dialog
 
 class TraktListActions(ListActions):
     def like_list(self, list_slug, user_slug='me', delete=False):
-        item = ItemLikeList(
+        item_class = ItemLikeOfficialList if user_slug == 'official' else ItemLikeList
+        item = item_class(
             self.provider,
             user_slug=user_slug,
             list_slug=list_slug,
@@ -51,12 +52,19 @@ class ItemLikeList:
         return self.provider.api
 
     @cached_property
+    def request_args(self):
+        return self.get_request_args()
+
+    def get_request_args(self):
+        return ('users', self.user_slug, 'lists', self.list_slug, 'like')
+
+    @cached_property
     def response(self):
         return self.get_response()
 
     def get_response(self):
         request = self.trakt_api.delete_response if self.delete else self.trakt_api.post_response
-        return request('users', self.user_slug, 'lists', self.list_slug, 'like')
+        return request(*self.request_args)
 
     @cached_property
     def is_successful(self):
@@ -85,3 +93,8 @@ class ItemLikeList:
             Dialog().ok(get_localized(32315), self.dialog_message)
         if successful:
             return self.response
+
+
+class ItemLikeOfficialList(ItemLikeList):
+    def get_request_args(self):
+        return ('lists', self.list_slug, 'like')
