@@ -30,7 +30,7 @@ class TraktIdentifiersDatabase(Database):
         return set_timestamp(0, set_int=True)
 
     def is_queried(self, query):
-        with self.access.connection.open():
+        with self.session():
             expiry = self.access.get_cached('queries', query, 'expiry') or 0
         return expiry > self.current_time
 
@@ -45,7 +45,7 @@ class TraktIdentifiersDatabase(Database):
             if value is not None:
                 conditions.append(f'{name}=?')
                 values.append(int(value))
-        with self.access.connection.open():
+        with self.session():
             rows = self.access.get_cached_list_values(
                 'identifiers', tuple(IDENTIFIER_COLUMNS), tuple(values), ' AND '.join(conditions))
         return dict(rows[0]) if rows else None
