@@ -12,7 +12,6 @@ from tmdbhelper_sync_trakt.directories.mapper_static import (
 from jurialmunkey.ftools import cached_property
 from tmdbhelper_sync_trakt.identifiers.client import TraktIdentifierClient
 from tmdbhelper.lib.addon.plugin import get_localized
-from contextlib import suppress
 
 
 class ListTraktStaticProperties(ListTraktStandardProperties):
@@ -30,7 +29,7 @@ class ListTraktStaticProperties(ListTraktStandardProperties):
         return self.trakt_api.profile.slug
 
     def set_user_profile_slug(self, item):
-        with suppress(TypeError):
+        if item['list'].get('privacy') == 'private' and item['list']['type'] != 'official':
             item['user_profile_slug'] = self.user_profile_slug
         return item
 
@@ -172,7 +171,6 @@ class ListTraktStaticSearch(ListTraktStaticNoCache):
     def configure_list_properties(self, list_properties):
         list_properties = super().configure_list_properties(list_properties)
         list_properties.item_mapper_class = StaticUnLikedItemMapperFactory
-        list_properties.trakt_authorization = True
         list_properties.request_url = 'search/list?query={query}&fields=name'
         list_properties.plugin_name = '{localized} ({query})'
         list_properties.localize = 32361

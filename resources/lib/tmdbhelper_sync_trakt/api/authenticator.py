@@ -47,8 +47,12 @@ class TraktAuthenticator:
         return bool(self.access_token)
 
     def authorize(self, forced=False):
-        self.login_if_required = self.login_if_required or forced
-        return self.is_authorized
+        login_if_required = self.login_if_required
+        self.login_if_required = login_if_required or forced
+        try:
+            return self.is_authorized
+        finally:
+            self.login_if_required = login_if_required
 
     @cached_property
     def dialog_noapikey_header(self):

@@ -11,7 +11,7 @@ class TraktProfile:
 
     @cached_property
     def meta(self):
-        if not self.trakt_api.is_authorized:
+        if not self.trakt_api.authenticator.is_authorized:
             return
         return self.trakt_api.get_response_json('users/me')
 
