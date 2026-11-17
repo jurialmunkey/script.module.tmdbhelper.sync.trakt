@@ -1,4 +1,5 @@
 from tmdbhelper_sync_trakt.directories.item import TraktDirItem as BaseDirItem
+from tmdbhelper_sync_trakt.directories.basedir_trakt import BaseDirItemTraktAuthorised
 from tmdbhelper.lib.addon.plugin import get_localized
 from jurialmunkey.ftools import cached_property
 
@@ -70,7 +71,7 @@ class BaseDirItemRandomPopularLists(BaseDirItemRandomTrending):
     group = 32159
 
 
-class BaseDirItemRandomLikedLists(BaseDirItemRandomTrending):
+class BaseDirItemRandomLikedLists(BaseDirItemTraktAuthorised, BaseDirItemRandomTrending):
     priority = 240
     label_prefix = 32302
     params = {'info': 'trakt_random_likedlists'}
@@ -79,7 +80,7 @@ class BaseDirItemRandomLikedLists(BaseDirItemRandomTrending):
     group = 32159
 
 
-class BaseDirItemRandomMyLists(BaseDirItemRandomTrending):
+class BaseDirItemRandomMyLists(BaseDirItemRandomLikedLists):
     priority = 250
     label_prefix = 32303
     params = {'info': 'trakt_random_mylists'}
