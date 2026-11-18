@@ -1,4 +1,5 @@
 from jurialmunkey.ftools import cached_property
+from tmdbhelper.lib.addon.plugin import get_language
 from tmdbhelper_sync_trakt.identifiers.client import TraktIdentifierClient
 from tmdbhelper_sync_trakt.directories.mapper_comments import CommentsItemMapper
 from tmdbhelper_sync_trakt.directories.mapper_watchers import WatchersItemMapper
@@ -33,6 +34,26 @@ class ListTraktRelatedProperties(ListTraktStandardProperties):
 
 class ListTraktRelatedCommentsProperties(ListTraktRelatedProperties):
     container_content = ''
+    trakt_language = None
+    trakt_language_user = 'user'
+
+    @cached_property
+    def language_code(self):
+        return self.get_language_code()
+
+    def get_language_code(self):
+        if self.trakt_language == self.trakt_language_user:
+            return get_language()[:2]
+        return self.trakt_language
+
+    @cached_property
+    def trakt_filters(self):
+        return self.get_trakt_filters()
+
+    def get_trakt_filters(self):
+        if not self.language_code:
+            return {}
+        return {'language': self.language_code}
 
     def get_mapped_item(self, item, add_infoproperties=None):
         return CommentsItemMapper(item, add_infoproperties).item
@@ -77,8 +98,9 @@ class ListTraktComments(ListTraktRelatedID):
         list_properties.page_length = 10
         return list_properties
 
-    def get_items(self, *args, sort_by=None, **kwargs):
+    def get_items(self, *args, sort_by=None, language=None, **kwargs):
         self.list_properties.trakt_sort = sort_by or 'newest'
+        self.list_properties.trakt_language = language
         return super().get_items(*args, **kwargs)
 
 
