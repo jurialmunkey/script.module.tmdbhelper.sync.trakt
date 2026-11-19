@@ -145,6 +145,9 @@ class TraktAuthenticator:
     def notify_failure(self):
         Dialog().ok(get_localized(32103), get_localized(32111))
 
+    def notify_signed_out(self):
+        Dialog().ok(get_localized(32103), get_localized(32112))
+
     def poller(self):
         authorization = None
         while True:

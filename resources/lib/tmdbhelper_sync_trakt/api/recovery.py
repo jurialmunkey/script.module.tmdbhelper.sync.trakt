@@ -1,8 +1,9 @@
 class TraktAuthorizationResult:
-    def __init__(self, authorization=None, logged_in=False, failed=False):
+    def __init__(self, authorization=None, logged_in=False, failed=False, signed_out=False):
         self.authorization = authorization
         self.logged_in = logged_in
         self.failed = failed
+        self.signed_out = signed_out
 
 
 class TraktTokenRecovery:
@@ -56,7 +57,7 @@ class TraktTokenRecovery:
 
     def login(self):
         if not self.allow_login:
-            return self.token.on_failure('user reauthorization required')
+            return self.token.on_rejected('user reauthorization required')
         authorization = self.authenticator.get_login_authorization(prompt=not self.force_login)
         if not authorization:
             return self.token.on_failure('user authorization was not completed')

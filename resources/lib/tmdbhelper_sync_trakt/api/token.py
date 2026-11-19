@@ -95,6 +95,8 @@ class TraktStoredAccessToken:
             self.trakt_api.authenticator.configure_provider()
         if result.failed:
             self.trakt_api.authenticator.notify_failure()
+        if result.signed_out:
+            self.trakt_api.authenticator.notify_signed_out()
         return result.authorization
 
     def on_failure(self, reason):
@@ -102,6 +104,12 @@ class TraktStoredAccessToken:
         get_property('TraktRefreshTimeStamp', set_timestamp(self.cooldown_seconds))
         get_property('TraktIsAuth', clear_property=True)
         return TraktAuthorizationResult(failed=True)
+
+    def on_rejected(self, reason):
+        # Credentials needing sign-in are removed so background requests stop retrying them.
+        kodi_log(f'Trakt authentication failed: {reason}. Removing stored authorization.', 1)
+        self.delete_stored_authorization()
+        return TraktAuthorizationResult(signed_out=True)
 
     def on_success(self):
         # Refresh tokens are single-use: persist their replacement before any further request.
