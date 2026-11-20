@@ -1,0 +1,158 @@
+# Kodi Media Center language file
+msgid ""
+msgstr ""
+"Language: fr_FR\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgctxt "#32000"
+msgid "Lists"
+msgstr "Listes"
+
+msgctxt "#32001"
+msgid "Cache own lists"
+msgstr "Mettre en cache mes listes"
+
+msgctxt "#32002"
+msgid "Cache items from your custom Trakt lists."
+msgstr "Mettre en cache les éléments de vos listes Trakt personnalisées."
+
+msgctxt "#32003"
+msgid "Genre icon folder"
+msgstr "Dossier des icônes de genres"
+
+msgctxt "#32004"
+msgid "Choose the folder containing custom icons for Trakt genres."
+msgstr "Choisissez le dossier contenant les icônes personnalisées pour les genres Trakt."
+
+msgctxt "#32005"
+msgid "Next episodes"
+msgstr "Prochains épisodes"
+
+msgctxt "#32006"
+msgid "Check calendar"
+msgstr "Consulter le calendrier"
+
+msgctxt "#32007"
+msgid "Check the calendar for next episodes. Slower, but more accurate."
+msgstr "Consulter le calendrier pour déterminer les prochains épisodes. Plus lent, mais plus précis."
+
+msgctxt "#32008"
+msgid "Legacy preferences migrated"
+msgstr "Anciennes préférences migrées"
+
+msgctxt "#32009"
+msgid "Account"
+msgstr "Compte"
+
+msgctxt "#32010"
+msgid "Store the Trakt account authentication token used by TMDbHelper."
+msgstr "Stocker le jeton d'authentification du compte Trakt utilisé par TMDbHelper."
+
+msgctxt "#32011"
+msgid "Sign in"
+msgstr "Se connecter"
+
+msgctxt "#32012"
+msgid "Connect your Trakt account to TMDbHelper."
+msgstr "Connecter votre compte Trakt à TMDbHelper."
+
+msgctxt "#32013"
+msgid "Sign out"
+msgstr "Se déconnecter"
+
+msgctxt "#32014"
+msgid "Disconnect your Trakt account from TMDbHelper."
+msgstr "Déconnecter votre compte Trakt de TMDbHelper."
+
+msgctxt "#32015"
+msgid "Legacy credentials migrated"
+msgstr "Anciens identifiants migrés"
+
+msgctxt "#32016"
+msgid "Use episode air times"
+msgstr "Utiliser les horaires de diffusion des épisodes"
+
+msgctxt "#32017"
+msgid "Use Trakt's broadcast date and time to determine when next episodes have aired. Also checks the calendar for newly aired episodes and refreshes next-episode calculations every ten minutes. Uses the existing date rules when no air time is available."
+msgstr "Utiliser la date et l'heure de diffusion de Trakt pour déterminer quand les prochains épisodes ont été diffusés. Consulte également le calendrier pour détecter les épisodes récemment diffusés et actualise le calcul des prochains épisodes toutes les dix minutes. Applique les règles de date existantes lorsqu'aucun horaire de diffusion n'est disponible."
+
+msgctxt "#32100"
+msgid "Unauthorised 401 Error"
+msgstr "Erreur 401 : non autorisé"
+
+msgctxt "#32101"
+msgid "Token"
+msgstr "Jeton"
+
+msgctxt "#32102"
+msgid "You must authenticate your Trakt account to use this feature."
+msgstr "Vous devez authentifier votre compte Trakt pour utiliser cette fonctionnalité."
+
+msgctxt "#32103"
+msgid "Trakt Authentication"
+msgstr "Authentification Trakt"
+
+msgctxt "#32104"
+msgid "Go to [B]{}[/B]"
+msgstr "Rendez-vous sur [B]{}[/B]"
+
+msgctxt "#32105"
+msgid "Enter the code"
+msgstr "Saisissez le code"
+
+msgctxt "#32106"
+msgid "Trakt user account logout"
+msgstr "Déconnexion du compte utilisateur Trakt"
+
+msgctxt "#32107"
+msgid "Do you wish to logout of your Trakt account?"
+msgstr "Voulez-vous vous déconnecter de votre compte Trakt ?"
+
+msgctxt "#32108"
+msgid "Trakt access token not found"
+msgstr "Jeton d'accès Trakt introuvable"
+
+msgctxt "#32109"
+msgid "Logout failed!"
+msgstr "Échec de la déconnexion !"
+
+msgctxt "#32110"
+msgid "Successfully logged out of Trakt user account"
+msgstr "Déconnexion du compte utilisateur Trakt réussie"
+
+msgctxt "#32111"
+msgid "Trakt authorization could not be completed. Automatic authorization attempts are paused for five minutes. You can try signing in again from the Trakt account settings."
+msgstr "L'autorisation Trakt n'a pas pu être finalisée. Les tentatives d'autorisation automatiques sont suspendues pendant cinq minutes. Vous pouvez essayer de vous reconnecter depuis les paramètres du compte Trakt."
+
+msgctxt "#32112"
+msgid "Your Trakt sign-in has expired and was removed. Sign in again from the Trakt account settings."
+msgstr "Votre connexion Trakt a expiré et a été supprimée. Reconnectez-vous depuis les paramètres du compte Trakt."
+
+msgctxt "#32200"
+msgid "Diagnostics"
+msgstr "Diagnostic"
+
+msgctxt "#32201"
+msgid "Log Trakt request"
+msgstr "Journaliser une requête Trakt"
+
+msgctxt "#32202"
+msgid "Request a Trakt API path and save the response in this module's profile folder."
+msgstr "Interroger un chemin de l'API Trakt et enregistrer la réponse dans le dossier de profil de ce module."
+
+msgctxt "#32203"
+msgid "Authorization status"
+msgstr "État de l'autorisation"
+
+msgctxt "#32204"
+msgid "Show account authorization and token expiry without displaying token values."
+msgstr "Afficher l'autorisation du compte et l'expiration du jeton sans afficher les valeurs des jetons."
+
+msgctxt "#32205"
+msgid "No response"
+msgstr "Aucune réponse"
+
+msgctxt "#32206"
+msgid "URL"
+msgstr "URL"
